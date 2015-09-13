@@ -118,13 +118,23 @@ So the result expectation $E[X]$ = $\frac{k+1}{2}$.
 ~\\
 
 \noindent \textbf{Problem5.} A monkey types on a 26-letter keyboard that has lowercase letters only. Each letter is chosen independently and uniformly at random from the alphabet. If the monkey types 1,000,000 letters, what is
-the expected number of times that sequence "proof" appears?
+the expected number of times that sequence `proof' appears?
 
 ~\\
 
 \noindent \textbf{Solution:}
+Here we can assume an Event $X_i$ as seeing the word `proof' at the index $i$, $i$ should be from 0 to $999,995$, because the last chance should take all the $1,000,000$ letters, not the last one word since it has the length of 5.
+and the probability of `proof' is $(1/26)^5$, so we can say that:
 
+1) if we saw the word `proof', then $X_i$ = 1
 
+2) otherwise, the value $X_i$ = 0.
+
+Then in this way, the expectation $E(X_i)$ is the expected number of times for the sequence `proof' occurs. 
+
+And from this point, we can get the result:
+
+$$E(X_i) = 999996 * (1/26)^5 \approx 0.084$$
 
 ~\\ %% end of the document
 
