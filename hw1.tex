@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{amsmath}
 \author{Chang Liu ~\\ chang\_liu@student.uml.edu}
 \title{91.673 Advanced Database Systems Homework1}
 
@@ -101,7 +102,47 @@ what is the probability that your enhanced algorithm returns the correct answer?
 
 \noindent \textbf{Solution:}
 
+1) Suppose that we randomly selection one value from $\{1, ... n-1\}$ that are less then $z$, set it as the $x$, and then the other value $y$, we set it as $z-x$, then according to the equation's property, we can conclude that:
+
+$$F(x + z-x \ mod \ n) = [F(x) + F(z-x)] \ mod \ m$$
+
+Further, since $z$ is any input from $\{1, .... n-1 \}$, then it is less than $n$, so the above equation should be:
+
+$$F(z) = [F(x) + F(z-x)] \ mod \ m$$ 
+
+As $z$ mod $n$ equals $z$, and from the condition that some value is changed, if $F(x)$ is not the real value, then the probability that it's changed is $P(F(x) \ changed) = 1/5$, and similarly, $P(F(z-x) \ changed) = 1/5$.
+
+But there is some correlation between $F(x)$ and $F(z-x)$, they're bounded to $F(z)$, according to the first equation to calculate $F(z)$, at least one of it is changed then $F(z)$ should be error, 
+
+
+\begin{equation}
+\begin{aligned}
+P(F(z) \ changed) 
+= P(F(x) \ or \ F(z-x) \ changed) \\
+= P(F(x) \ changed) 
++ P(F(z-x) \ changed) 
+- P(both \ changed) \\
+\le 1/5 + 1/5 = 2/5 = 0.4
+\end{aligned}
+\end{equation}
+
+
+So the error rate for $F(z)$ is less than 0.4, and the correct rate is larger than $0.6 > 1/2$, which meets the requirement for the algorithm.
+
+2) Do that experiment repeatably to reduce the error rate, choose the majority of the result of our judgment, for example, for the 3-times experiment, only by more than 2 times it says the value is wrong, then we can say that it's wrong.
+
+In this way, we can calculate the probability that it's actually wrong, 
+
+a) 2/3 has predicted it's wrong, 1/3 has predict it right, then probability is 
+$$C_3^2 * {0.4}^2 * 0.6 = 0.288$$
+
+b) 3/3 has predicted it's wrong, then probability is
+$$C_3^3 * {0.4}^3 = 0.064$$
+
+So the total error rate is $0.288+0.064=0.352$, the probability of estimating it right is $\ge 0.648$.
+
 ~\\
+
 
 \noindent \textbf{Problem4.} . Suppose we roll a fair $k$-sided die with the numbers 1 through k on the die's faces. If X is the number that appears, what is $E[X]$?
 
