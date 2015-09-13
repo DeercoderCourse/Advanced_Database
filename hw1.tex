@@ -1,0 +1,69 @@
+\documentclass{article}
+\author{Chang Liu ~\\ chang\_liu@student.uml.edu}
+\title{91.673 Advanced Database Systems Homework1}
+
+\begin{document}
+
+\maketitle
+
+
+
+\noindent \textbf{Problem1.} We flip a fair coin ten times. Find the probability of the following events.
+
+(a) The number of heads and the number of tails are equal.
+
+(b) There are more heads than tails.
+
+(c) The ith flip and the (11 – i)th flip are the same for i = 1, . . . , 5. 
+
+\textbf{Solution:}~\\
+
+(a) The number of heads equals to the number of tails when both of them are \textbf{5}. So the probability is that when the head is 5(and the tail is also 5 in this case), so the probability is that:
+
+$$C_{10}^5 * (1/2)^5 * (1/2)^{(10-5)} = 0.246$$
+
+
+
+\noindent \textbf{Problem2.} Consider the following game, played with three standard six-sided dice. If the player ends
+with all three dice showing the same number, she wins. The player starts by rolling all three dice. After
+this first roll, the player can select any one, two, or all of the three dice and re-roll them. After this second
+roll, the player can again select any of the three dice and re-roll them one final time. For the following
+questions, assume that the player used the following optimal strategy: if all three dice match, the player
+stops and winds; if two dice match, the player re-rolls the die that does not match; and if no dice match,
+the player re-rolls them all.
+
+(a) Find the probability that all three dice show the same number on the first roll.
+
+(b) Find the probability that exactly two of the three dice show the same number after the first roll.
+
+(c) Find the probability that the player wins, conditioned on exactly two of the three dice showing the
+same number after the first roll.
+ 
+
+\noindent \textbf{Problem3.} We have a function F: {0,...,n-1} → {0,...,m-1}. We know that, for 0 ≤ x, y ≤ n − 1, F((x +
+y) mod n) = (F(x) + F(y)) mod m. The only way we have for evaluating F is to use a lookup table that
+stores the values of F. Unfortunately, an Evil Adversary has changed the value of 1/5 of the table entries
+when we were not looking.
+
+Describe a simple randomized algorithm that, given an input z, outputs a value that equals F(z) with
+probability at least 1/2. Your algorithm should work for every value of z, regardless of what values the
+Adversary changed. Your algorithm should use as few lookups and as little computation as possible.
+
+
+Suppose I allow you to repeat your initial algorithm three times. What should you do in this case, and
+what is the probability that your enhanced algorithm returns the correct answer?
+
+
+
+\noindent \textbf{Problem4.} . Suppose we roll a fair k-sided die with the numbers 1 through k on the die's faces. If X is the
+number that appears, what is E[X]?
+
+
+
+\noindent \textbf{Problem5.} A monkey types on a 26-letter keyboard that has lowercase letters only. Each letter is chosen
+independently and uniformly at random from the alphabet. If the monkey types 1,000,000 letters, what is
+the expected number of times that sequence "proof" appears?
+
+
+
+\end{document}
