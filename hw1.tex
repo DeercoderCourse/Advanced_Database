@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \author{Chang Liu ~\\ chang\_liu@student.uml.edu}
-\title{91.673 Advanced Database Systems Homework1}
+\title{91.673 Advanced Database Systems ~\\ Homework1}
 
 \begin{document}
 
@@ -15,7 +15,7 @@
 
 (b) There are more heads than tails.
 
-(c) The $i$th flip and the (11 - $i$)th flip are the same for $i = 1, . . . , 5$. 
+(c) The $i$th flip and the (11 - $i$)th flip are the same for $i = 1, . . . , 5$.
 
 ~\\
 
@@ -27,15 +27,15 @@ $$C_{10}^5 * (1/2)^5 * (1/2)^{(10-5)} \approx 0.246$$
 
 (b) First list all the situation that heads is more than tails, it is:
 
-1) 6 heads and 4 tails, 
+1) 6 heads and 4 tails,
 
 2) 7 heads and 3 tails,
 
-3) 8 heads and 2 tails, 
+3) 8 heads and 2 tails,
 
-4) 9 heads and 1 tail, 
+4) 9 heads and 1 tail,
 
-5) 10 heads and 0 tail. 
+5) 10 heads and 0 tail.
 
 In all these situations, calculate their probability and add them all, since they're all the possible candidates. So the result should be:
 
@@ -44,14 +44,14 @@ $$ (C_{10}^6 + C_{10}^7 + C_{10}^8 + C_{10}^9 + C_{10}^10) * (1/2)^{10} \approx 
 
 (c) All the situations are as follows.
 
-1) for $i$ = 1, it means the 1st and the 10th flip are the same, then both of them are heads or tails, the probability is 
+1) for $i$ = 1, it means the 1st and the 10th flip are the same, then both of them are heads or tails, the probability is
 
 $$ C_2^1 * 1/2 * 1/2 = 1/2 = 0.5$$
 
 2) for other $i$ = 2, 3, 4, 5, it is quite similar, we just need to consider the two sequence has the same flip, and the probability for these two flips are independent, so in all the 4 combinations of these two sequence, it has \textbf{0.5} probability that they're the same.
 
 In total, the probability is 0.5.
- 
+
 
 ~\\
 
@@ -70,14 +70,14 @@ the player re-rolls them all.
 
 (c) Find the probability that the player wins, conditioned on exactly two of the three dice showing the
 same number after the first roll.
- 
+
 ~\\
 
 \noindent \textbf{Solution:}
 
 a) There're six values that can be show in one dice, and if all three dice are the same, then it should be in this situation, and the probability is the product of $C_6^1$ and their probability of happening in this same situation.So the result is:
-$$ C_6^1 * (1/6)^6 = 1 / 6^5 \approx 0.00013$$ 
- 
+$$ C_6^1 * (1/6)^6 = 1 / 6^5 \approx 0.00013$$
+
 b) There're also six values that the two dice are the same, so it is $C_6^1 = 6$ options. And in each option, the other dice should be a different value, which value is $5/6$, and the two dice should be the same value, it's probability is that $(1/6)^2 = 1/36$. In total, the probability is:
 $$ C_6^1 * (1/6)^2 * (1 - 1/6) = 5/36 \approx 0.139$$
 
@@ -108,19 +108,19 @@ $$F(x + z-x \ mod \ n) = [F(x) + F(z-x)] \ mod \ m$$
 
 Further, since $z$ is any input from $\{1, .... n-1 \}$, then it is less than $n$, so the above equation should be:
 
-$$F(z) = [F(x) + F(z-x)] \ mod \ m$$ 
+$$F(z) = [F(x) + F(z-x)] \ mod \ m$$
 
 As $z$ mod $n$ equals $z$, and from the condition that some value is changed, if $F(x)$ is not the real value, then the probability that it's changed is $P(F(x) \ changed) = 1/5$, and similarly, $P(F(z-x) \ changed) = 1/5$.
 
-But there is some correlation between $F(x)$ and $F(z-x)$, they're bounded to $F(z)$, according to the first equation to calculate $F(z)$, at least one of it is changed then $F(z)$ should be error, 
+But there is some correlation between $F(x)$ and $F(z-x)$, they're bounded to $F(z)$, according to the first equation to calculate $F(z)$, at least one of it is changed then $F(z)$ should be error,
 
 
 \begin{equation}
 \begin{aligned}
-P(F(z) \ changed) 
+P(F(z) \ changed)
 = P(F(x) \ or \ F(z-x) \ changed) \\
-= P(F(x) \ changed) 
-+ P(F(z-x) \ changed) 
+= P(F(x) \ changed)
++ P(F(z-x) \ changed)
 - P(both \ changed) \\
 \le 1/5 + 1/5 = 2/5 = 0.4
 \end{aligned}
@@ -131,9 +131,9 @@ So the error rate for $F(z)$ is less than 0.4, and the correct rate is larger th
 
 2) Do that experiment repeatably to reduce the error rate, choose the majority of the result of our judgment, for example, for the 3-times experiment, only by more than 2 times it says the value is wrong, then we can say that it's wrong.
 
-In this way, we can calculate the probability that it's actually wrong, 
+In this way, we can calculate the probability that it's actually wrong,
 
-a) 2/3 has predicted it's wrong, 1/3 has predict it right, then probability is 
+a) 2/3 has predicted it's wrong, 1/3 has predict it right, then probability is
 $$C_3^2 * {0.4}^2 * 0.6 = 0.288$$
 
 b) 3/3 has predicted it's wrong, then probability is
@@ -171,7 +171,7 @@ and the probability of `proof' is $(1/26)^5$, so we can say that:
 
 2) otherwise, the value $X_i$ = 0.
 
-Then in this way, the expectation $E(X_i)$ is the expected number of times for the sequence `proof' occurs. 
+Then in this way, the expectation $E(X_i)$ is the expected number of times for the sequence `proof' occurs.
 
 And from this point, we can get the result:
 
