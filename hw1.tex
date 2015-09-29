@@ -1,7 +1,15 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{datenumber}
 \author{Chang Liu ~\\ chang\_liu@student.uml.edu}
 \title{91.673 Advanced Database Systems ~\\ Homework1}
+
+\setdatetoday
+\addtocounter{datenumber}{-17}
+\setdatebynumber{\thedatenumber}
+
+\date{\datedate}
+
 
 \begin{document}
 
@@ -44,13 +52,11 @@ $$ (C_{10}^6 + C_{10}^7 + C_{10}^8 + C_{10}^9 + C_{10}^10) * (1/2)^{10} \approx 
 
 (c) All the situations are as follows.
 
-1) for $i$ = 1, it means the 1st and the 10th flip are the same, then both of them are heads or tails, the probability is
+1) for $i$ = 1, it means the 1st and the 10th flip are the same, then both of them are heads or tails, the probability is 0.5
 
-$$ C_2^1 * 1/2 * 1/2 = 1/2 = 0.5$$
+2) for other $i$ = 2, 3, 4, 5, it is quite similar.
 
-2) for other $i$ = 2, 3, 4, 5, it is quite similar, we just need to consider the two sequence has the same flip, and the probability for these two flips are independent, so in all the 4 combinations of these two sequence, it has \textbf{0.5} probability that they're the same.
-
-In total, the probability is 0.5.
+In total, the probability is that all these five requirements should be meet, so it is $(0.5)^5 = \frac{1}{2^5} = \frac{1}{32}$
 
 
 ~\\
@@ -75,15 +81,16 @@ same number after the first roll.
 
 \noindent \textbf{Solution:}
 
-a) There're six values that can be show in one dice, and if all three dice are the same, then it should be in this situation, and the probability is the product of $C_6^1$ and their probability of happening in this same situation.So the result is:
-$$ C_6^1 * (1/6)^6 = 1 / 6^5 \approx 0.00013$$
+a) There're six values that can be show in one dice, and if all three dice are the same, then it should be in this situation, and the probability is the product of $C_6^1$ and their probability of happening in this same situation. So the result is:
+$$ C_6^1 * (1/6)^3 = 1 / 6^2 =  \frac{1}{36} $$
 
-b) There're also six values that the two dice are the same, so it is $C_6^1 = 6$ options. And in each option, the other dice should be a different value, which value is $5/6$, and the two dice should be the same value, it's probability is that $(1/6)^2 = 1/36$. In total, the probability is:
-$$ C_6^1 * (1/6)^2 * (1 - 1/6) = 5/36 \approx 0.139$$
+b) There're also six values that the two dice are the same, so it is $C_6^1 = 6$ options. And in each option, the other dice should be a different value, which value is $5/6$, and the two dice should be the same value, it's probability is that $(1/6)^2 = 1/36$. And there are $C_3^2$ situations there. In total, the probability is:
+$$ C_3^2 * C_6^1 * (1/6)^2 * (1 - 1/6) = \frac{5}{12} $$
 
-c) Let's set event A as `The player wins at the second time', and event B as the `the two of three dice showing the same number after the first roll', the according to b), the probability of B, $P(B) = 5/36$. This is a conditional probability, and $P(A|B) = P(A \bigcap B) / P(B)$, and $P(A \bigcap B)$ is the event that the player has two of the three dice the same at first roll, then the second time wins, so its value is $5/36 * (1/6)$. So the result is:
-$$P(A|B) = \frac{P(A \bigcap B)}{P(B)}\qquad = 1/6$$
-
+c) There are two situations that:
+1) the second roll wins. Then the probability is just $\frac{1}{6}$, since the number must be the same as the first roll.
+2) the third roll wins. Then the second roll fails and the probability is that $\frac{5}{6} * \frac{1}{6} = \frac{5}{36}$
+So the result is: $$ \frac{1}{6} + \frac{5}{36} = \frac{11}{36}$$
 ~\\
 
 \noindent \textbf{Problem3.} We have a function $F: \{0,...,n-1\} \rightarrow \{0,...,m-1\}$. We know that, for $0 \le x, y \le n - 1, F((x +y)$ mod $n$) = $(F(x) + F(y))$ mod $m$. The only way we have for evaluating $F$ is to use a lookup table that
