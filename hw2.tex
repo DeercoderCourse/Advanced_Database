@@ -1,14 +1,13 @@
 \documentclass{article}
 \usepackage{amsmath}
+\usepackage{listings}
 \author{Chang Liu ~\\ chang\_liu@student.uml.edu}
 \title{91.673 Advanced Database Systems ~\\ Homework2}
-
+\lstset{language=Python}
 
 \begin{document}
 
 \maketitle
-
-
 
 \noindent \textbf{Problem1.} Design MapReduce algorithms to take a very large file of integers and produce as output:
 
@@ -23,6 +22,78 @@
 ~\\
 
 \noindent \textbf{Solution:}
+(a) First generate all the pairs and then sum up the same-key pair, that will generate a unique set.
+After that traverse all the pairs and find the max key, which is the max integer in the original file.
+
+\begin{lstlisting}[frame=single]
+map(key=file, value=contents):
+	for each integer in contents, emit (integer, "1")
+	
+reduce(key=integer, values=uniq_counts):
+	sum all the pairs that has the same key 
+	emit all the pairs after the summing
+	
+max = pair[0].key
+find_max(all pairs):
+	for pair in pairs:
+		if pair.key() > max:
+			max = pair.key()
+\end{lstlisting}
+
+~\\
+
+(b) Input consists of many values, here we define the algorithm as map() and reduce():
+
+\begin{lstlisting}[frame=single]
+map(key=file, value=contents):
+	for each integer in contents, emit (integer, "1")
+	
+reduce(key=integer, values=uniq_counts):
+	sum all (key,value) pairs in the out list 
+	emit result pair (total_integer_value, total_count)
+\end{lstlisting}
+
+The average number is just the total\_integer\_value/total\_count.
+
+\textbf{NOTE}: since in the above algorithm, during the reduce process the sum will sum all the
+count for "1", which is the number of integers(=total\_count). And for each pair their 
+is a value, so the sum of all is just the sum for all the integers
+(=total\_integer\_value), so the result of the division is the average number.
+
+~\\
+
+(c) The process is just to first get all the pairs when mapping, then reduce the repeated pair in reducing, as follows:
+\begin{lstlisting}[frame=single]
+map(key=file, value=contents):
+	for each integer in contents, emit (integer, "1")
+	
+reduce(key=integer, values=uniq_counts):
+	sum all the pairs that has the same key 
+	emit all the pairs after the summing
+\end{lstlisting}
+
+At last, select all the key once from the pairs after the reducing process, because after reducing there are only unique
+integers in the pairs, select their key is to select the unique integer and forming a set will have such a unique property.
+
+
+~\\
+
+(d) The core idea is to sum up all the pair after mapping, then when the result pair's count is 1, this is a distinct
+number, sum up all these pair's count.
+
+\begin{lstlisting}[frame=single]
+map(key=file, value=contents):
+	for each integer in contents, emit (integer, "1")
+	
+reduce(key=integer, values=uniq_counts):
+	sum all the pairs that has the same key 
+	emit all the pairs after the summing
+\end{lstlisting}
+
+At last their will be many pairs with different (key, value), the value
+field is just the count that the integer appears, count all the pair that 
+their value field is "1", then the result count is just the count of
+distinct integer.
 
 
 ~\\
@@ -32,8 +103,30 @@
 ~\\
 
 \noindent \textbf{Solution:}
+Let $A=\{1,2,3,4\}$, $B=\{2,3,5,7\}$, $C=\{2,4,6\}$, then we use $J(A,B), J(B,C) and J(A,C)$ to denote their Jaccard similarities.
 
+% mark for bigcap and \bigcup usage(intersection, and union)
+1) The equation is as follows:
+\begin{flalign*}
+J(A,B) &= \frac{A \bigcap B}{A \bigcup B} \\
+	   &= \frac{count(\{2, 3\})}{count(\{1, 2, 3, 4, 5, 7\})} \\
+	   &= \frac{2}{6} \\
+	   &= \frac{1}{3}
+\end{flalign*}
 
+2)  The equation is as follows:
+\begin{flalign*}
+J(B,C) &= \frac{B \bigcap C}{B \bigcup C} \\
+	   &= \frac{count(\{2\})}{count(\{2, 3, 4, 5, 6, 7\})} \\
+	   &= \frac{1}{6}
+\end{flalign*}
+
+3)  The equation is as follows:
+\begin{flalign*}
+J(A,C) &= \frac{A \bigcap C}{A \bigcup C} \\
+	   &= \frac{count(\{2, 4\})}{count(\{1, 2, 3, 4, 6\})} \\
+	   &= \frac{2}{5}
+\end{flalign*}
 
 
 
